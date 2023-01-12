@@ -35,6 +35,11 @@ class Login extends React.Component {
     history.push('/game');
   };
 
+  handleConfig = () => {
+    const { history } = this.props;
+    history.push('/settings');
+  };
+
   render() {
     const { inputName, inputEmail } = this.state;
     return (
@@ -65,6 +70,13 @@ class Login extends React.Component {
           onClick={ this.handleSubmit }
         >
           Play
+        </button>
+        <button
+          type="button"
+          data-testid="btn-settings"
+          onClick={ this.handleConfig }
+        >
+          Configurações
         </button>
       </div>
     );
