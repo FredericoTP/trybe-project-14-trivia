@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import logo from '../trivia.png';
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   state = {
     inputName: '',
     inputEmail: '',
@@ -18,6 +20,19 @@ export default class Login extends React.Component {
     const validatePassword = inputName.length > number;
     const validEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
     return !(validatePassword && validEmail.test(inputEmail));
+  };
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const response = await fetch('https://opentdb.com/api_token.php?command=request');
+    const data = await response.json();
+
+    console.log(data);
+    localStorage.setItem('token', data.token);
+
+    const { history } = this.props;
+    history.push('/game');
   };
 
   render() {
@@ -47,6 +62,7 @@ export default class Login extends React.Component {
           type="button"
           data-testid="btn-play"
           disabled={ this.isButtonDisabled() }
+          onClick={ this.handleSubmit }
         >
           Play
         </button>
@@ -54,3 +70,11 @@ export default class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
+
+export default connect()(Login);
