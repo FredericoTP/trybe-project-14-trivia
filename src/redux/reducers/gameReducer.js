@@ -1,4 +1,6 @@
-import { ADD_QUESTIONS, NEXT_QUESTION, HANDLE_SCORE } from '../actions';
+import {
+  ADD_QUESTIONS, NEXT_QUESTION, HANDLE_SCORE, HANDLE_ASSERTIONS,
+} from '../actions';
 
 const INITIAL_STATE = {
   score: 0,
@@ -23,6 +25,11 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       score: action.score,
+    };
+  case HANDLE_ASSERTIONS:
+    return {
+      ...state,
+      assertions: (state.assertions + 1),
     };
   default:
     return state;

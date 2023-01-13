@@ -2,6 +2,7 @@ export const ADD_PERSON_INFO = 'ADD_PERSON_INFO';
 export const ADD_QUESTIONS = 'ADD_QUESTIONS';
 export const NEXT_QUESTION = 'NEXT_QUESTION';
 export const HANDLE_SCORE = 'HANDLE_SCORE';
+export const HANDLE_ASSERTIONS = 'HANDLE_ASSERTIONS';
 
 export const addPersonInfo = (name, email) => ({
   type: ADD_PERSON_INFO,
@@ -22,4 +23,8 @@ export const nextQuestion = () => ({
 export const handleScore = (score) => ({
   type: HANDLE_SCORE,
   score,
+});
+
+export const handleAssertions = () => ({
+  type: HANDLE_ASSERTIONS,
 });
