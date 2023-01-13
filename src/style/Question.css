@@ -1,0 +1,13 @@
+.btn-incorrect:disabled {
+  background-color: red;
+  border: 3px solid red;
+  color: black;
+  font-weight: 700;
+}
+
+.btn-correct:disabled {
+  background-color: rgb(6, 240, 15);
+  border: 3px solid rgb(6, 240, 15);
+  color: black;
+  font-weight: 700;
+}

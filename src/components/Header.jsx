@@ -23,7 +23,6 @@ class Header extends React.Component {
   render() {
     const { hashEmail } = this.state;
     const { name, score } = this.props;
-    console.log(name);
     return (
       <div>
         <h2 data-testid="header-player-name">{ name }</h2>

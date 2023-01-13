@@ -30,7 +30,6 @@ class Login extends React.Component {
 
     const response = await fetch('https://opentdb.com/api_token.php?command=request');
     const data = await response.json();
-
     localStorage.setItem('token', data.token);
 
     history.push('/game');
@@ -56,6 +55,7 @@ class Login extends React.Component {
           type="text"
           name="inputName"
           data-testid="input-player-name"
+          placeholder="Name"
           value={ inputName }
           onChange={ this.handleChange }
         />
@@ -63,6 +63,7 @@ class Login extends React.Component {
           type="email"
           name="inputEmail"
           data-testid="input-gravatar-email"
+          placeholder="Email"
           value={ inputEmail }
           onChange={ this.handleChange }
         />
@@ -79,7 +80,7 @@ class Login extends React.Component {
           data-testid="btn-settings"
           onClick={ this.handleConfig }
         >
-          Configurações
+          Settings
         </button>
       </div>
     );
