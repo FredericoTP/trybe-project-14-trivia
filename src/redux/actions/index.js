@@ -3,6 +3,7 @@ export const ADD_QUESTIONS = 'ADD_QUESTIONS';
 export const NEXT_QUESTION = 'NEXT_QUESTION';
 export const HANDLE_SCORE = 'HANDLE_SCORE';
 export const HANDLE_ASSERTIONS = 'HANDLE_ASSERTIONS';
+export const SET_INITIAL_STATE = 'SET_INITIAL_STATE';
 
 export const addPersonInfo = (name, email) => ({
   type: ADD_PERSON_INFO,
@@ -27,4 +28,8 @@ export const handleScore = (score) => ({
 
 export const handleAssertions = () => ({
   type: HANDLE_ASSERTIONS,
+});
+
+export const setInitialState = () => ({
+  type: SET_INITIAL_STATE,
 });

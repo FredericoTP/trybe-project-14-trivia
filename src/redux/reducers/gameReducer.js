@@ -1,5 +1,5 @@
 import {
-  ADD_QUESTIONS, NEXT_QUESTION, HANDLE_SCORE, HANDLE_ASSERTIONS,
+  ADD_QUESTIONS, NEXT_QUESTION, HANDLE_SCORE, HANDLE_ASSERTIONS, SET_INITIAL_STATE,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -30,6 +30,14 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       assertions: (state.assertions + 1),
+    };
+  case SET_INITIAL_STATE:
+    return {
+      ...state,
+      score: 0,
+      assertions: 0,
+      questions: [],
+      questionIndex: 0,
     };
   default:
     return state;

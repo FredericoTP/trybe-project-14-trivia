@@ -4,7 +4,7 @@ import PlayerRank from '../components/PlayerRank';
 
 export default class Rankings extends Component {
   render() {
-    let players = JSON.parse(localStorage.getItem('ranking'));
+    let players = JSON.parse(localStorage.getItem('players'));
     if (players !== null) {
       players = players.sort((a, b) => b.score - a.score);
     }
