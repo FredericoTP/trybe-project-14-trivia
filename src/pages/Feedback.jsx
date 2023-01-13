@@ -58,8 +58,8 @@ Feedback.propTypes = {
 }.isRequired;
 
 const mapStateToProps = (globalState) => ({
-  score: globalState.game.score,
-  assertions: globalState.game.assertions,
+  score: globalState.player.score,
+  assertions: globalState.player.assertions,
 });
 
 export default connect(mapStateToProps)(Feedback);

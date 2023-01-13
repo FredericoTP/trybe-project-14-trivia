@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import '../style/Question.css';
-import { nextQuestion } from '../redux/actions';
+import { nextQuestion, handleScore } from '../redux/actions';
 
 class Question extends React.Component {
   constructor() {
@@ -16,6 +16,7 @@ class Question extends React.Component {
     this.handleClickIncorrect = this.handleClickIncorrect.bind(this);
     this.handleClickCorrect = this.handleClickCorrect.bind(this);
     this.handleNext = this.handleNext.bind(this);
+    this.sumScore = this.sumScore.bind(this);
   }
 
   componentDidMount() {
@@ -55,13 +56,14 @@ class Question extends React.Component {
   }
 
   handleClickCorrect() {
+    const { dispatch } = this.props;
     this.setState({
       isDisabled: true,
       showNext: true,
     });
     clearInterval(this.intervalId);
     clearInterval(this.intervalIdTwo);
-    console.log('a');
+    dispatch(handleScore(this.sumScore()));
   }
 
   handleNext() {
@@ -90,10 +92,29 @@ class Question extends React.Component {
     }
   }
 
+  sumScore() {
+    const { score, questions, questionIndex } = this.props;
+    const { timer } = this.state;
+    const { difficulty } = questions[questionIndex];
+    const dif = difficulty;
+    const number10 = 10;
+    const number3 = 3;
+
+    switch (dif) {
+    case 'hard':
+      return (score + (number10 + timer * number3));
+    case 'medium':
+      return (score + (number10 + timer * 2));
+    default:
+      return (score + (number10 + timer * 1));
+    }
+  }
+
   render() {
     const { isDisabled, array, showNext, timer } = this.state;
     const { questions, questionIndex } = this.props;
     let index = 0;
+    this.sumScore();
     return (
       <div>
         <div>
@@ -165,11 +186,13 @@ Question.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
+  score: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  questionIndex: state.game.questionIndex,
-  questions: state.game.questions,
+  questionIndex: state.player.questionIndex,
+  questions: state.player.questions,
+  score: state.player.score,
 });
 
 export default connect(mapStateToProps)(Question);

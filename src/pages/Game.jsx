@@ -60,7 +60,7 @@ Game.propTypes = {
 
 const mapStateToProps = (state) => ({
   name: state.login.name,
-  questions: state.game.questions,
+  questions: state.player.questions,
 });
 
 export default connect(mapStateToProps)(Game);
