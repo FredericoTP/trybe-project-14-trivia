@@ -1,15 +1,21 @@
+import { ADD_PERSON_INFO } from '../actions';
+
 const INITIAL_STATE = {
   name: '',
-  assertions: '',
-  score: 0,
   gravatarEmail: '',
 };
 
-const loginReducer = (state = INITIAL_STATE, action) => {
+const login = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+  case ADD_PERSON_INFO:
+    return {
+      ...state,
+      name: action.name,
+      gravatarEmail: action.email,
+    };
   default:
     return state;
   }
 };
 
-export default loginReducer;
+export default login;
