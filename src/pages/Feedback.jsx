@@ -4,6 +4,18 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 
 class Feedback extends Component {
+  playAgain = () => {
+    const { history } = this.props;
+
+    history.push('/');
+  };
+
+  redirectToRanking = () => {
+    const { history } = this.props;
+
+    history.push('/rankings');
+  };
+
   render() {
     const { assertions, score } = this.props;
 
@@ -18,15 +30,32 @@ class Feedback extends Component {
         </div>
         <div data-testid="feedback-total-score">{score}</div>
         <div data-testid="feedback-total-question">{assertions}</div>
+        <button
+          type="button"
+          data-testid="btn-play-again"
+          onClick={ this.playAgain }
+        >
+          Play Again
+        </button>
+        <button
+          type="button"
+          data-testid="btn-ranking"
+          onClick={ this.redirectToRanking }
+        >
+          Ranking
+        </button>
       </div>
     );
   }
 }
 
 Feedback.propTypes = {
-  assertions: PropTypes.number.isRequired,
-  score: PropTypes.number.isRequired,
-};
+  assertions: PropTypes.number,
+  score: PropTypes.number,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }),
+}.isRequired;
 
 const mapStateToProps = (globalState) => ({
   score: globalState.game.score,
@@ -34,11 +63,3 @@ const mapStateToProps = (globalState) => ({
 });
 
 export default connect(mapStateToProps)(Feedback);
-
-// const mapStateToProps = (state) => ({
-//   name: state.login.name,
-//   email: state.login.gravatarEmail,
-//   score: state.game.score,
-// });
-
-// export default connect(mapStateToProps)(Feedback);
