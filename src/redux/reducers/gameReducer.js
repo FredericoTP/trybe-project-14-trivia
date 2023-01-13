@@ -2,7 +2,7 @@ import { ADD_QUESTIONS, NEXT_QUESTION } from '../actions';
 
 const INITIAL_STATE = {
   score: 0,
-  assertions: 5,
+  assertions: 0,
   questions: [],
   questionIndex: 0,
 };
