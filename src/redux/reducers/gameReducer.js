@@ -1,4 +1,4 @@
-import { ADD_QUESTIONS } from '../actions';
+import { ADD_QUESTIONS, NEXT_QUESTION } from '../actions';
 
 const INITIAL_STATE = {
   score: 0,
@@ -12,6 +12,11 @@ const game = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       questions: action.data,
+    };
+  case NEXT_QUESTION:
+    return {
+      ...state,
+      questionIndex: (state.questionIndex + action.payload),
     };
   default:
     return state;

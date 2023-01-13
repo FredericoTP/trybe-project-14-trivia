@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import '../style/Question.css';
+import { nextQuestion } from '../redux/actions';
 
 class Question extends React.Component {
   constructor() {
@@ -9,8 +10,11 @@ class Question extends React.Component {
     this.state = {
       isDisabled: false,
       array: [],
+      showNext: false,
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleClickIncorrect = this.handleClickIncorrect.bind(this);
+    this.handleClickCorrect = this.handleClickCorrect.bind(this);
+    this.handleNext = this.handleNext.bind(this);
   }
 
   componentDidMount() {
@@ -26,14 +30,43 @@ class Question extends React.Component {
     });
   }
 
-  handleClick() {
+  handleClickIncorrect() {
     this.setState({
       isDisabled: true,
+      showNext: true,
     });
   }
 
+  handleClickCorrect() {
+    this.setState({
+      isDisabled: true,
+      showNext: true,
+    });
+    console.log('a');
+  }
+
+  handleNext() {
+    const { questions, questionIndex, dispatch, history } = this.props;
+    if (questionIndex + 1 === questions.length) {
+      history.push('/feedback');
+    } else {
+      dispatch(nextQuestion());
+      const number = 0.5;
+      const {
+        correct_answer: correct, incorrect_answers: incorrect,
+      } = questions[questionIndex + 1];
+      let answers = [];
+      answers = [correct, ...incorrect];
+      this.setState({
+        array: answers.sort(() => Math.random() - number),
+        isDisabled: false,
+        showNext: false,
+      });
+    }
+  }
+
   render() {
-    const { isDisabled, array } = this.state;
+    const { isDisabled, array, showNext } = this.state;
     const { questions, questionIndex } = this.props;
     let index = 0;
     return (
@@ -52,7 +85,7 @@ class Question extends React.Component {
                     type="button"
                     data-testid={ `wrong-answer-${index - 1}` }
                     disabled={ isDisabled }
-                    onClick={ this.handleClick }
+                    onClick={ this.handleClickIncorrect }
                   >
                     { item }
                   </button>
@@ -66,13 +99,24 @@ class Question extends React.Component {
                   type="button"
                   data-testid="correct-answer"
                   disabled={ isDisabled }
-                  onClick={ this.handleClick }
+                  onClick={ this.handleClickCorrect }
                 >
                   { item }
                 </button>
               );
             })
           }
+        </div>
+        <div>
+          { showNext && (
+            <button
+              data-testid="btn-next"
+              type="button"
+              onClick={ this.handleNext }
+            >
+              Next
+            </button>
+          )}
         </div>
       </div>
     );
@@ -89,6 +133,10 @@ Question.propTypes = {
     question: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   }).isRequired).isRequired,
+  dispatch: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => ({
