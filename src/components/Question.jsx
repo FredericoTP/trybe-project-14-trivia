@@ -11,6 +11,7 @@ class Question extends React.Component {
       isDisabled: false,
       array: [],
       showNext: false,
+      timer: 30,
     };
     this.handleClickIncorrect = this.handleClickIncorrect.bind(this);
     this.handleClickCorrect = this.handleClickCorrect.bind(this);
@@ -19,6 +20,7 @@ class Question extends React.Component {
 
   componentDidMount() {
     const number = 0.5;
+    const number1000 = 1000;
     const { questions, questionIndex } = this.props;
     const {
       correct_answer: correct, incorrect_answers: incorrect,
@@ -28,6 +30,19 @@ class Question extends React.Component {
     this.setState({
       array: answers.sort(() => Math.random() - number),
     });
+
+    this.intervalId = setInterval(() => {
+      this.setState((prevState) => ({ timer: prevState.timer - 1 }));
+    }, number1000);
+  }
+
+  componentDidUpdate() {
+    const { timer } = this.state;
+
+    if (timer === 0) {
+      clearInterval(this.intervalId);
+      clearInterval(this.intervalIdTwo);
+    }
   }
 
   handleClickIncorrect() {
@@ -35,6 +50,8 @@ class Question extends React.Component {
       isDisabled: true,
       showNext: true,
     });
+    clearInterval(this.intervalId);
+    clearInterval(this.intervalIdTwo);
   }
 
   handleClickCorrect() {
@@ -42,11 +59,14 @@ class Question extends React.Component {
       isDisabled: true,
       showNext: true,
     });
+    clearInterval(this.intervalId);
+    clearInterval(this.intervalIdTwo);
     console.log('a');
   }
 
   handleNext() {
     const { questions, questionIndex, dispatch, history } = this.props;
+    const number1000 = 1000;
     if (questionIndex + 1 === questions.length) {
       history.push('/feedback');
     } else {
@@ -61,16 +81,24 @@ class Question extends React.Component {
         array: answers.sort(() => Math.random() - number),
         isDisabled: false,
         showNext: false,
+        timer: 30,
       });
+
+      this.intervalIdTwo = setInterval(() => {
+        this.setState((prevState) => ({ timer: prevState.timer - 1 }));
+      }, number1000);
     }
   }
 
   render() {
-    const { isDisabled, array, showNext } = this.state;
+    const { isDisabled, array, showNext, timer } = this.state;
     const { questions, questionIndex } = this.props;
     let index = 0;
     return (
       <div>
+        <div>
+          <h4>{ timer }</h4>
+        </div>
         <p data-testid="question-category">{ questions[questionIndex].category }</p>
         <p data-testid="question-text">{ questions[questionIndex].question }</p>
         <div data-testid="answer-options">
@@ -84,7 +112,7 @@ class Question extends React.Component {
                     key={ item }
                     type="button"
                     data-testid={ `wrong-answer-${index - 1}` }
-                    disabled={ isDisabled }
+                    disabled={ (isDisabled || timer === 0) }
                     onClick={ this.handleClickIncorrect }
                   >
                     { item }
@@ -98,7 +126,7 @@ class Question extends React.Component {
                   key={ item }
                   type="button"
                   data-testid="correct-answer"
-                  disabled={ isDisabled }
+                  disabled={ isDisabled || timer === 0 }
                   onClick={ this.handleClickCorrect }
                 >
                   { item }
@@ -108,7 +136,7 @@ class Question extends React.Component {
           }
         </div>
         <div>
-          { showNext && (
+          { (showNext || timer === 0) && (
             <button
               data-testid="btn-next"
               type="button"
