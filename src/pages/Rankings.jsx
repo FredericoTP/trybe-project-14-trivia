@@ -10,6 +10,11 @@ export default class Rankings extends Component {
     }
     return (
       <div>
+        <h2
+          data-testid="ranking-title"
+        >
+          Ranking
+        </h2>
         <button
           type="button"
           data-testid="btn-go-home"
