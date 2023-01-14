@@ -4,6 +4,18 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 
 class Feedback extends Component {
+  componentDidMount() {
+    if (!localStorage.getItem('players')) {
+      const array = [this.playerInfos()];
+      localStorage.setItem('players', [JSON.stringify(array)]);
+      this.playerInfos();
+    } else {
+      const arrayPlayers = JSON.parse(localStorage.getItem('players'));
+      const storage = [...arrayPlayers, this.playerInfos()];
+      localStorage.setItem('players', JSON.stringify(storage));
+    }
+  }
+
   playAgain = () => {
     const { history } = this.props;
 
@@ -12,8 +24,13 @@ class Feedback extends Component {
 
   redirectToRanking = () => {
     const { history } = this.props;
-
     history.push('/rankings');
+  };
+
+  playerInfos = () => {
+    const { name, email, score } = this.props;
+    const playerInfo = { name, email, score };
+    return playerInfo;
   };
 
   render() {
@@ -55,11 +72,15 @@ Feedback.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
+  name: PropTypes.string,
+  email: PropTypes.string,
 }.isRequired;
 
 const mapStateToProps = (globalState) => ({
   score: globalState.player.score,
   assertions: globalState.player.assertions,
+  name: globalState.login.name,
+  email: globalState.login.gravatarEmail,
 });
 
 export default connect(mapStateToProps)(Feedback);

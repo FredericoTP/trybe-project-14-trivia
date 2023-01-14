@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import '../style/Question.css';
-import { nextQuestion, handleScore } from '../redux/actions';
+import { nextQuestion, handleScore, handleAssertions } from '../redux/actions';
 
 class Question extends React.Component {
   constructor() {
@@ -64,6 +64,7 @@ class Question extends React.Component {
     clearInterval(this.intervalId);
     clearInterval(this.intervalIdTwo);
     dispatch(handleScore(this.sumScore()));
+    dispatch(handleAssertions());
   }
 
   handleNext() {

@@ -2,13 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import logo from '../trivia.png';
-import { addPersonInfo } from '../redux/actions';
+import { addPersonInfo, setInitialState } from '../redux/actions';
 
 class Login extends React.Component {
   state = {
     inputName: '',
     inputEmail: '',
   };
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(setInitialState());
+  }
 
   handleChange = ({ target }) => {
     const { name, value } = target;
