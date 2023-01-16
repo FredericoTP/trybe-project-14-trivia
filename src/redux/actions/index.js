@@ -4,6 +4,8 @@ export const NEXT_QUESTION = 'NEXT_QUESTION';
 export const HANDLE_SCORE = 'HANDLE_SCORE';
 export const HANDLE_ASSERTIONS = 'HANDLE_ASSERTIONS';
 export const SET_INITIAL_STATE = 'SET_INITIAL_STATE';
+export const CHANGE_CATEGORY = 'CHANGE_CATEGORY';
+export const CHANGE_DIFFICULTY = 'CHANGE_DIFFICULTY';
 
 export const addPersonInfo = (name, email) => ({
   type: ADD_PERSON_INFO,
@@ -32,4 +34,14 @@ export const handleAssertions = () => ({
 
 export const setInitialState = () => ({
   type: SET_INITIAL_STATE,
+});
+
+export const changeCategory = (category) => ({
+  type: CHANGE_CATEGORY,
+  category,
+});
+
+export const changeDifficulty = (difficulty) => ({
+  type: CHANGE_DIFFICULTY,
+  difficulty,
 });

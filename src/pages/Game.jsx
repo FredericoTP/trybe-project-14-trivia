@@ -19,10 +19,19 @@ class Game extends Component {
   }
 
   triviaApi = async () => {
-    const { dispatch, history } = this.props;
+    const { dispatch, history, category, difficulty } = this.props;
     const number3 = 3;
     const token = localStorage.getItem('token');
-    const response = await fetch(`https://opentdb.com/api.php?amount=5&token=${token}`);
+    let url = '';
+    if (category === 'any' && difficulty === 'any') {
+      url = `https://opentdb.com/api.php?amount=5&token=${token}`;
+    } else if (category !== 'any' && difficulty === 'any') {
+      url = `https://opentdb.com/api.php?amount=5&category=${category}&token=${token}`;
+    } else {
+      url = `https://opentdb.com/api.php?amount=5&category=${category}&difficulty=${difficulty}&token=${token}`;
+    }
+    console.log(url);
+    const response = await fetch(url);
     const data = await response.json();
     if (data.response_code === number3) {
       localStorage.removeItem('token');
@@ -56,11 +65,15 @@ Game.propTypes = {
     question: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   }).isRequired).isRequired,
+  category: PropTypes.string.isRequired,
+  difficulty: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   name: state.login.name,
   questions: state.player.questions,
+  category: state.player.category,
+  difficulty: state.player.difficulty,
 });
 
 export default connect(mapStateToProps)(Game);
