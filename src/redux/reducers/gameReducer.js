@@ -1,5 +1,6 @@
 import {
   ADD_QUESTIONS, NEXT_QUESTION, HANDLE_SCORE, HANDLE_ASSERTIONS, SET_INITIAL_STATE,
+  CHANGE_CATEGORY, CHANGE_DIFFICULTY,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -7,6 +8,8 @@ const INITIAL_STATE = {
   assertions: 0,
   questions: [],
   questionIndex: 0,
+  category: 'any',
+  difficulty: 'any',
 };
 
 const player = (state = INITIAL_STATE, action) => {
@@ -38,6 +41,16 @@ const player = (state = INITIAL_STATE, action) => {
       assertions: 0,
       questions: [],
       questionIndex: 0,
+    };
+  case CHANGE_CATEGORY:
+    return {
+      ...state,
+      category: action.category,
+    };
+  case CHANGE_DIFFICULTY:
+    return {
+      ...state,
+      difficulty: action.difficulty,
     };
   default:
     return state;

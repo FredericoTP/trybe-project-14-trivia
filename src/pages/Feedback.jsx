@@ -14,6 +14,11 @@ class Feedback extends Component {
       const storage = [...arrayPlayers, this.playerInfos()];
       localStorage.setItem('players', JSON.stringify(storage));
     }
+
+    const { name, history } = this.props;
+    if (name === '') {
+      history.push('/');
+    }
   }
 
   playAgain = () => {
