@@ -10,13 +10,13 @@ class Settings extends Component {
     this.state = {
       categories: [],
     };
-    this.categoryApi = this.categoryApi.bind(this);
+    // this.categoryApi = this.categoryApi.bind(this);
     this.handleCatDif = this.handleCatDif.bind(this);
   }
 
   componentDidMount() {
     const { dispatch } = this.props;
-    this.categoryApi();
+    // this.categoryApi();
     dispatch(changeCategory('any'));
     dispatch(changeDifficulty('any'));
   }
@@ -31,14 +31,14 @@ class Settings extends Component {
     }
   }
 
-  async categoryApi() {
-    const url = 'https://opentdb.com/api_category.php';
-    const response = await fetch(url);
-    const data = await response.json();
-    this.setState({
-      categories: data.trivia_categories,
-    });
-  }
+  // async categoryApi() {
+  //   const url = 'https://opentdb.com/api_category.php';
+  //   const response = await fetch(url);
+  //   const data = await response.json();
+  //   this.setState({
+  //     categories: data.trivia_categories,
+  //   });
+  // }
 
   render() {
     const { categories } = this.state;
