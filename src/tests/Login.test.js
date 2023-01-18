@@ -1,8 +1,9 @@
 import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { renderWithRouterAndRedux } from './renderWithRouterAndRedux'
-import Login from '../../pages/Login'
+import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
+import Login from '../pages/Login';
+import App from '../App';
 
 describe('loginPage Tests', () => {
 
@@ -29,7 +30,7 @@ describe('loginPage Tests', () => {
   });
 
   test('se o button "play" existe e te leva para /Game', async () => {
-    const { history } = renderWithRouterAndRedux(<Login />);
+    const { history } = renderWithRouterAndRedux(<App />);
     const inputName = screen.getByTestId('input-player-name');
     const inputEmail = screen.getByTestId('input-gravatar-email');
     const button = screen.getByTestId('btn-play');
@@ -44,17 +45,13 @@ describe('loginPage Tests', () => {
     });
   })
 
-  test('se o button "Settings" existe e te leva para /settings', async () => {
-    const { history } = renderWithRouterAndRedux(<Login />);
+  test('se o button "Settings" existe e te leva para /settings', () => {
+    const { history } = renderWithRouterAndRedux(<App />);
     const buttonSettings = screen.getByTestId('btn-settings');
     expect(buttonSettings).toBeInTheDocument();
     userEvent.click(buttonSettings)
     const { pathname } = history.location;
-    expect(pathname).toBe("/");
-    await waitFor(() => {
-      const { pathname } = history.location;
-      expect(pathname).toBe('/settings')
-    });
+    expect(pathname).toBe("/settings");
   });
 
 });
