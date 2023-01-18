@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PlayerRank from '../components/PlayerRank';
 
-export default class Rankings extends Component {
+export default class Ranking extends Component {
   render() {
     let players = JSON.parse(localStorage.getItem('players'));
     if (players !== null) {

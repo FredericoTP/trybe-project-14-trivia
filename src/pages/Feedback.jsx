@@ -14,11 +14,6 @@ class Feedback extends Component {
       const storage = [...arrayPlayers, this.playerInfos()];
       localStorage.setItem('players', JSON.stringify(storage));
     }
-
-    const { name, history } = this.props;
-    if (name === '') {
-      history.push('/');
-    }
   }
 
   playAgain = () => {
@@ -29,7 +24,7 @@ class Feedback extends Component {
 
   redirectToRanking = () => {
     const { history } = this.props;
-    history.push('/rankings');
+    history.push('/ranking');
   };
 
   playerInfos = () => {

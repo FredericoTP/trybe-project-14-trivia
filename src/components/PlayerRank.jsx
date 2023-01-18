@@ -28,7 +28,7 @@ export default class PlayerRank extends Component {
       <div>
         <p data-testid={ `player-name-${index}` }>{name}</p>
         <p data-testid={ `player-score-${index}` }>{score}</p>
-        <img src={ `https://www.gravatar.com/avatar/${hashEmail}` } alt={ name } />
+        <img data-testid="player-image" src={ `https://www.gravatar.com/avatar/${hashEmail}` } alt={ name } />
       </div>
     );
   }
