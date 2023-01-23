@@ -1,0 +1,40 @@
+.feedback-container {
+  align-content: center;
+  background-image: url('../images/trivia-background.jpg');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+
+.feedback-content {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  font-family: Poppins , sans-serif;
+  font-weight: 800;
+  margin: auto;
+  width: 90%;
+}
+
+.feedback-img {
+  border-radius: 100%;
+  mix-blend-mode: darken;
+  width: 150px;
+}
+
+.btn-feedback {
+  font-weight: 700;
+  margin: 10px 0;
+  width: 90%;
+}
+
+@media screen and ( min-width : 720px ) {
+
+  .feedback-content {
+    width: 50%;
+  }
+}

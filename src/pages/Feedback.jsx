@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
+import '../style/Feedback.css';
+import imageOne from '../images/peeposad.jpg';
+import imageTwo from '../images/peepohappy.jpg';
 
 class Feedback extends Component {
   componentDidMount() {
@@ -38,29 +41,54 @@ class Feedback extends Component {
 
     const minLength = 3;
     return (
-      <div>
+      <div className="feedback-container">
         <Header />
-        <div>
+        <div className="feedback-content">
           { (assertions < minLength
-            ? <p data-testid="feedback-text">Could be better...</p>
-            : <p data-testid="feedback-text">Well Done!</p>)}
+            ? (
+              <div>
+                <img className="feedback-img" src={ imageOne } alt="" />
+                <p data-testid="feedback-text">Could be better...</p>
+              </div>
+            )
+            : (
+              <div>
+                <img className="feedback-img" src={ imageTwo } alt="" />
+                <p data-testid="feedback-text">Well Done!</p>
+              </div>
+            )
+          )}
+          <div data-testid="feedback-total-score">
+            <h4>
+              Score:
+              {' '}
+              {score}
+            </h4>
+          </div>
+          <div data-testid="feedback-total-question">
+            <h4>
+              Assertions:
+              {' '}
+              {assertions}
+            </h4>
+          </div>
+          <button
+            className="btn btn-dark btn-feedback"
+            type="button"
+            data-testid="btn-play-again"
+            onClick={ this.playAgain }
+          >
+            Play Again
+          </button>
+          <button
+            className="btn btn-dark btn-feedback"
+            type="button"
+            data-testid="btn-ranking"
+            onClick={ this.redirectToRanking }
+          >
+            Ranking
+          </button>
         </div>
-        <div data-testid="feedback-total-score">{score}</div>
-        <div data-testid="feedback-total-question">{assertions}</div>
-        <button
-          type="button"
-          data-testid="btn-play-again"
-          onClick={ this.playAgain }
-        >
-          Play Again
-        </button>
-        <button
-          type="button"
-          data-testid="btn-ranking"
-          onClick={ this.redirectToRanking }
-        >
-          Ranking
-        </button>
       </div>
     );
   }
