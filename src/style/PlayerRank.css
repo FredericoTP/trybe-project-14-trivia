@@ -22,7 +22,7 @@
 
 .playerrank-content p {
   color: white;
-  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .playerrank-container p {

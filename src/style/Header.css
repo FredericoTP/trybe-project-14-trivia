@@ -2,8 +2,10 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
+  flex-wrap: wrap;
   font-family: Poppins , sans-serif;
-  height: 100px;
+
+  /* height: 100px; */
   justify-content: space-between;
   width: 100%;
 }
@@ -22,7 +24,7 @@
   color: white;
   font-size: 20px;
   font-weight: 700;
-  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .header-img {
