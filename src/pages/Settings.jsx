@@ -1,8 +1,10 @@
+/* eslint-disable react/jsx-max-depth */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { changeCategory, changeDifficulty } from '../redux/actions';
+import '../style/Settings.css';
 
 class Settings extends Component {
   constructor() {
@@ -43,16 +45,19 @@ class Settings extends Component {
   render() {
     const { categories } = this.state;
     return (
-      <div>
-        <h2
-          data-testid="settings-title"
-        >
-          Settings
-        </h2>
-        <form>
-          <label htmlFor="categories-question">
+      <div className="settings-container">
+        <form className="form-container">
+          <h2
+            data-testid="settings-title"
+            className="form-title"
+          >
+            Settings
+          </h2>
+
+          <label className="label-select" htmlFor="categories-question">
             Categories:
             <select
+              className="form-select select-control"
               id="categories-question"
               name="category"
               onChange={ this.handleCatDif }
@@ -76,9 +81,10 @@ class Settings extends Component {
             </select>
           </label>
 
-          <label htmlFor="difficulty-question">
+          <label className="label-select" htmlFor="difficulty-question">
             Difficulty
             <select
+              className="form-select select-control"
               id="difficulty-question"
               name="difficulty"
               onChange={ this.handleCatDif }
@@ -89,8 +95,9 @@ class Settings extends Component {
               <option value="hard">Hard</option>
             </select>
           </label>
+          <Link className="btn btn-dark btn-settings" to="/">Página Inicial</Link>
+
         </form>
-        <Link to="/">Página Inicial</Link>
       </div>
     );
   }
