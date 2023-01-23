@@ -117,13 +117,13 @@ class Question extends React.Component {
     let index = 0;
     this.sumScore();
     return (
-      <div>
-        <div>
-          <h4 data-testid="timer-text">{ timer }</h4>
+      <div className="question-container">
+        <div className="question-info">
+          <p data-testid="question-category">{ questions[questionIndex].category }</p>
+          <p data-testid="question-text">{ questions[questionIndex].question }</p>
+          <h4 data-testid="timer-text">{ `Time: ${timer}` }</h4>
         </div>
-        <p data-testid="question-category">{ questions[questionIndex].category }</p>
-        <p data-testid="question-text">{ questions[questionIndex].question }</p>
-        <div data-testid="answer-options">
+        <div className="answer-options" data-testid="answer-options">
           {
             array.map((item) => {
               if (item !== questions[questionIndex].correct_answer) {
@@ -156,10 +156,9 @@ class Question extends React.Component {
               );
             })
           }
-        </div>
-        <div>
           { (showNext || timer === 0) && (
             <button
+              className="btn btn-dark btn-next"
               data-testid="btn-next"
               type="button"
               onClick={ this.handleNext }
