@@ -119,7 +119,12 @@ class Question extends React.Component {
     return (
       <div className="question-container">
         <div className="question-info">
-          <p data-testid="question-category">{ questions[questionIndex].category }</p>
+          <p
+            className="question-category"
+            data-testid="question-category"
+          >
+            { questions[questionIndex].category }
+          </p>
           <p data-testid="question-text">{ questions[questionIndex].question }</p>
           <h4 data-testid="timer-text">{ `Time: ${timer}` }</h4>
         </div>

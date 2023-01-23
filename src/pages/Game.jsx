@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { addQuestions } from '../redux/actions';
 import Question from '../components/Question';
+import '../style/Game.css';
 
 class Game extends Component {
   componentDidMount() {
@@ -42,7 +43,7 @@ class Game extends Component {
   render() {
     const { questions, history } = this.props;
     return (
-      <div>
+      <div className="game-container">
         <Header />
         { questions.length > 0 && <Question history={ history } /> }
       </div>
