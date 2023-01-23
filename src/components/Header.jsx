@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { MD5 } from 'crypto-js';
+import '../style/Header.css';
 
 class Header extends React.Component {
   constructor() {
@@ -24,19 +25,24 @@ class Header extends React.Component {
     const { hashEmail } = this.state;
     const { name, score } = this.props;
     return (
-      <div>
-        <h2 data-testid="header-player-name">{ name }</h2>
-        <h2>
-          Pontuação:
-          {' '}
-          <span data-testid="header-score">{ score }</span>
-        </h2>
-        <img
-          data-testid="header-profile-picture"
-          src={ `https://www.gravatar.com/avatar/${hashEmail}` }
-          alt="profile"
-        />
-      </div>
+      <header className="header-container">
+        <div className="header-player-content">
+          <h2 className="header-name" data-testid="header-player-name">{ name }</h2>
+          <img
+            className="header-img"
+            data-testid="header-profile-picture"
+            src={ `https://www.gravatar.com/avatar/${hashEmail}` }
+            alt="profile"
+          />
+        </div>
+        <div className="header-score-content">
+          <h2 className="header-score">
+            Score:
+            {' '}
+            <span data-testid="header-score">{ score }</span>
+          </h2>
+        </div>
+      </header>
     );
   }
 }
