@@ -26,6 +26,13 @@
   text-align: center;
 }
 
+.timer {
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+  padding: 5px 10px;
+}
+
 .answer-options {
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 10px;
