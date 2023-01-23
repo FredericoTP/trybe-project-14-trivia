@@ -7,16 +7,16 @@ import { changeCategory, changeDifficulty } from '../redux/actions';
 class Settings extends Component {
   constructor() {
     super();
-    // this.state = {
-    //   categories: [],
-    // };
-    // this.categoryApi = this.categoryApi.bind(this);
+    this.state = {
+      categories: [],
+    };
+    this.categoryApi = this.categoryApi.bind(this);
     this.handleCatDif = this.handleCatDif.bind(this);
   }
 
   componentDidMount() {
     const { dispatch } = this.props;
-    // this.categoryApi();
+    this.categoryApi();
     dispatch(changeCategory('any'));
     dispatch(changeDifficulty('any'));
   }
@@ -31,17 +31,17 @@ class Settings extends Component {
     }
   }
 
-  // async categoryApi() {
-  //   const url = 'https://opentdb.com/api_category.php';
-  //   const response = await fetch(url);
-  //   const data = await response.json();
-  //   this.setState({
-  //     categories: data.trivia_categories,
-  //   });
-  // }
+  async categoryApi() {
+    const url = 'https://opentdb.com/api_category.php';
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({
+      categories: data.trivia_categories,
+    });
+  }
 
   render() {
-    // const { categories } = this.state;
+    const { categories } = this.state;
     return (
       <div>
         <h2
@@ -62,7 +62,7 @@ class Settings extends Component {
               >
                 Any Category
               </option>
-              {/* {categories.map((item) => {
+              {categories.map((item) => {
                 const { id, name } = item;
                 return (
                   <option
@@ -72,7 +72,7 @@ class Settings extends Component {
                     { name }
                   </option>
                 );
-              })} */}
+              })}
             </select>
           </label>
 
