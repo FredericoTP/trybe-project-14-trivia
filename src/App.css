@@ -9,7 +9,7 @@ body {
 }
 
 .App-logo {
-  height: 15vmin;
+  height: 25vmin;
   pointer-events: none;
 }
 
@@ -30,7 +30,8 @@ body {
 
 .App-header {
   align-items: center;
-  background-color: #282c34;
+  background-image: url('./images/trivia-background.jpg');
+  background-size: cover;
   color: white;
   display: flex;
   flex-direction: column;

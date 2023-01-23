@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import logo from '../trivia.png';
 import { addPersonInfo, setInitialState } from '../redux/actions';
+import '../style/Login.css';
 
 class Login extends React.Component {
   state = {
@@ -54,39 +55,45 @@ class Login extends React.Component {
         <div className="App">
           <header className="App-header">
             <img src={ logo } className="App-logo" alt="logo" />
+            <form className="form-container">
+              <input
+                className="input-control input-black"
+                type="text"
+                name="inputName"
+                data-testid="input-player-name"
+                placeholder="Name"
+                value={ inputName }
+                onChange={ this.handleChange }
+              />
+              <input
+                className="input-control input-black"
+                type="email"
+                name="inputEmail"
+                data-testid="input-gravatar-email"
+                placeholder="Email"
+                value={ inputEmail }
+                onChange={ this.handleChange }
+              />
+              <button
+                className="btn btn-dark btn-control"
+                type="button"
+                data-testid="btn-play"
+                disabled={ this.isButtonDisabled() }
+                onClick={ this.handleSubmit }
+              >
+                Play
+              </button>
+              <button
+                className="btn btn-dark btn-control"
+                type="button"
+                data-testid="btn-settings"
+                onClick={ this.handleConfig }
+              >
+                Settings
+              </button>
+            </form>
           </header>
         </div>
-        <input
-          type="text"
-          name="inputName"
-          data-testid="input-player-name"
-          placeholder="Name"
-          value={ inputName }
-          onChange={ this.handleChange }
-        />
-        <input
-          type="email"
-          name="inputEmail"
-          data-testid="input-gravatar-email"
-          placeholder="Email"
-          value={ inputEmail }
-          onChange={ this.handleChange }
-        />
-        <button
-          type="button"
-          data-testid="btn-play"
-          disabled={ this.isButtonDisabled() }
-          onClick={ this.handleSubmit }
-        >
-          Play
-        </button>
-        <button
-          type="button"
-          data-testid="btn-settings"
-          onClick={ this.handleConfig }
-        >
-          Settings
-        </button>
       </div>
     );
   }
