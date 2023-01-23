@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PlayerRank from '../components/PlayerRank';
+import '../style/Ranking.css';
 
 export default class Ranking extends Component {
   render() {
@@ -9,26 +10,28 @@ export default class Ranking extends Component {
       players = players.sort((a, b) => b.score - a.score);
     }
     return (
-      <div>
-        <h2
-          data-testid="ranking-title"
-        >
-          Ranking
-        </h2>
-        <button
-          type="button"
-          data-testid="btn-go-home"
-        >
-          <Link to="/">
+      <div className="ranking-container">
+        <div className="ranking-content">
+          <h2
+            className="ranking-title"
+            data-testid="ranking-title"
+          >
+            Ranking
+          </h2>
+          <Link
+            className="btn btn-dark btn-ranking"
+            data-testid="btn-go-home"
+            to="/"
+          >
             Pagina Inicial
           </Link>
-        </button>
-        <div>
-          { players ? (players.map((player, index) => (<PlayerRank
-            key={ index }
-            player={ player }
-            index={ index }
-          />))) : (<h3>Ninguem jogou ainda</h3>)}
+          <div className="ranking-players">
+            { players ? (players.map((player, index) => (<PlayerRank
+              key={ index }
+              player={ player }
+              index={ index }
+            />))) : (<h3>Ninguem jogou ainda</h3>)}
+          </div>
         </div>
       </div>
     );

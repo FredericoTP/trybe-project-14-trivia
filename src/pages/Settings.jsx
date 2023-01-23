@@ -1,22 +1,24 @@
+/* eslint-disable react/jsx-max-depth */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { changeCategory, changeDifficulty } from '../redux/actions';
+import '../style/Settings.css';
 
 class Settings extends Component {
   constructor() {
     super();
-    // this.state = {
-    //   categories: [],
-    // };
-    // this.categoryApi = this.categoryApi.bind(this);
+    this.state = {
+      categories: [],
+    };
+    this.categoryApi = this.categoryApi.bind(this);
     this.handleCatDif = this.handleCatDif.bind(this);
   }
 
   componentDidMount() {
     const { dispatch } = this.props;
-    // this.categoryApi();
+    this.categoryApi();
     dispatch(changeCategory('any'));
     dispatch(changeDifficulty('any'));
   }
@@ -31,28 +33,31 @@ class Settings extends Component {
     }
   }
 
-  // async categoryApi() {
-  //   const url = 'https://opentdb.com/api_category.php';
-  //   const response = await fetch(url);
-  //   const data = await response.json();
-  //   this.setState({
-  //     categories: data.trivia_categories,
-  //   });
-  // }
+  async categoryApi() {
+    const url = 'https://opentdb.com/api_category.php';
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({
+      categories: data.trivia_categories,
+    });
+  }
 
   render() {
-    // const { categories } = this.state;
+    const { categories } = this.state;
     return (
-      <div>
-        <h2
-          data-testid="settings-title"
-        >
-          Settings
-        </h2>
-        <form>
-          <label htmlFor="categories-question">
+      <div className="settings-container">
+        <form className="form-container">
+          <h2
+            data-testid="settings-title"
+            className="form-title"
+          >
+            Settings
+          </h2>
+
+          <label className="label-select" htmlFor="categories-question">
             Categories:
             <select
+              className="form-select select-control"
               id="categories-question"
               name="category"
               onChange={ this.handleCatDif }
@@ -62,7 +67,7 @@ class Settings extends Component {
               >
                 Any Category
               </option>
-              {/* {categories.map((item) => {
+              {categories.map((item) => {
                 const { id, name } = item;
                 return (
                   <option
@@ -72,13 +77,14 @@ class Settings extends Component {
                     { name }
                   </option>
                 );
-              })} */}
+              })}
             </select>
           </label>
 
-          <label htmlFor="difficulty-question">
+          <label className="label-select" htmlFor="difficulty-question">
             Difficulty
             <select
+              className="form-select select-control"
               id="difficulty-question"
               name="difficulty"
               onChange={ this.handleCatDif }
@@ -89,8 +95,9 @@ class Settings extends Component {
               <option value="hard">Hard</option>
             </select>
           </label>
+          <Link className="btn btn-dark btn-settings" to="/">Página Inicial</Link>
+
         </form>
-        <Link to="/">Página Inicial</Link>
       </div>
     );
   }

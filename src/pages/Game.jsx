@@ -4,16 +4,17 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { addQuestions } from '../redux/actions';
 import Question from '../components/Question';
+import '../style/Game.css';
 
 class Game extends Component {
   componentDidMount() {
-    // const { name, history } = this.props;
-    // const token = localStorage.getItem('token');
+    const { name, history } = this.props;
+    const token = localStorage.getItem('token');
 
-    // if (name.length === 0 || token === '') {
-    //   localStorage.removeItem('token');
-    //   history.push('/');
-    // }
+    if (name.length === 0 || token === '') {
+      localStorage.removeItem('token');
+      history.push('/');
+    }
 
     this.triviaApi();
   }
@@ -25,15 +26,15 @@ class Game extends Component {
     let url = '';
     if (category === 'any' && difficulty === 'any') {
       url = `https://opentdb.com/api.php?amount=5&token=${token}`;
-    // } else if (category !== 'any' && difficulty === 'any') {
-    //   url = `https://opentdb.com/api.php?amount=5&category=${category}&token=${token}`;
+    } else if (category !== 'any' && difficulty === 'any') {
+      url = `https://opentdb.com/api.php?amount=5&category=${category}&token=${token}`;
     } else {
       url = `https://opentdb.com/api.php?amount=5&category=${category}&difficulty=${difficulty}&token=${token}`;
     }
     const response = await fetch(url);
     const data = await response.json();
     if (data.response_code === number3) {
-      // localStorage.removeItem('token');
+      localStorage.removeItem('token');
       history.push('/');
     }
     dispatch(addQuestions(data.results));
@@ -42,7 +43,7 @@ class Game extends Component {
   render() {
     const { questions, history } = this.props;
     return (
-      <div>
+      <div className="game-container">
         <Header />
         { questions.length > 0 && <Question history={ history } /> }
       </div>
@@ -51,7 +52,7 @@ class Game extends Component {
 }
 
 Game.propTypes = {
-  // name: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,

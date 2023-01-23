@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { MD5 } from 'crypto-js';
+import '../style/PlayerRank.css';
 
 export default class PlayerRank extends Component {
   constructor() {
@@ -25,10 +26,17 @@ export default class PlayerRank extends Component {
     const { hashEmail } = this.state;
 
     return (
-      <div>
-        <p data-testid={ `player-name-${index}` }>{name}</p>
-        <p data-testid={ `player-score-${index}` }>{score}</p>
-        <img data-testid="player-image" src={ `https://www.gravatar.com/avatar/${hashEmail}` } alt={ name } />
+      <div className="playerrank-container">
+        <div className="playerrank-content">
+          <img data-testid="player-image" src={ `https://www.gravatar.com/avatar/${hashEmail}` } alt={ name } />
+          <p data-testid={ `player-name-${index}` }>{name}</p>
+        </div>
+        <p
+          className="playerrank-score"
+          data-testid={ `player-score-${index}` }
+        >
+          {score}
+        </p>
       </div>
     );
   }
