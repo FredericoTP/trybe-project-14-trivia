@@ -1,0 +1,37 @@
+.playerrank-container {
+  align-items: center;
+  background-color: black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  padding: 5px;
+  width: 100%;
+}
+
+.playerrank-content {
+  align-items: center;
+  display: flex;
+}
+
+.playerrank-content img {
+  border-radius: 100%;
+  margin-right: 5px;
+  width: 50px;
+}
+
+.playerrank-content p {
+  color: white;
+  word-wrap: break-word;
+}
+
+.playerrank-container p {
+  font-weight: 700;
+  margin: 0;
+}
+
+.playerrank-score {
+  background-color: white;
+  border-radius: 100%;
+  padding: 10px 17px;
+}
