@@ -7,6 +7,13 @@ Nesse projeto foi desenvolvido um jogo de perguntas e respostas baseado no jogo 
 - Visualizar a página de ranking, se quiser, ao final de cada jogo.
 - Configurar algumas opções para o jogo em uma tela de configuração acessível a partir do cabeçalho do app.
 
+O projeto foi feito em equipe e trabalhamos utilizando a metodologia Kanban. Membros da equipe:
+- Frederico Tavares
+- Vinicius Oliveira
+- Samara Bastos
+- Rodrigo Spolzino
+- Giuseppe brandalise
+
 <br />
 
 ### Stacks utilizadas no desenvolvimento:
