@@ -12,7 +12,7 @@ O projeto foi feito em equipe e trabalhamos utilizando a metodologia Kanban. Mem
 - Vinicius Oliveira
 - Samara Bastos
 - Rodrigo Spolzino
-- Giuseppe brandalise
+- Giuseppe Brandalise
 
 <br />
 
