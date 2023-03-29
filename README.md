@@ -98,7 +98,7 @@ O projeto foi feito em equipe e trabalhamos utilizando a metodologia Kanban. Mem
 
 ## 100% :heavy_check_mark:
 
-![Project-TrybeWallet-Grade]()
+![Project-Trivia-Grade](https://raw.githubusercontent.com/FredericoTP/trybe-project-14-trivia/main/images/trivia-grade.png)
 
 </details>
 <br />
@@ -110,8 +110,12 @@ O projeto foi feito em equipe e trabalhamos utilizando a metodologia Kanban. Mem
 
 </summary>
 
-![Project-TrybeWallet-Preview1]()
+![Project-Trivia-Preview1](https://raw.githubusercontent.com/FredericoTP/trybe-project-14-trivia/main/images/trivia-preview1.png)
  
-![Project-TrybeWallet-Preview2]()
+![Project-Trivia-Preview2](https://raw.githubusercontent.com/FredericoTP/trybe-project-14-trivia/main/images/trivia-preview2.png)
+
+![Project-Trivia-Preview3](https://raw.githubusercontent.com/FredericoTP/trybe-project-14-trivia/main/images/trivia-preview3.png)
+
+![Project-Trivia-Preview4](https://raw.githubusercontent.com/FredericoTP/trybe-project-14-trivia/main/images/trivia-preview4.png)
  
 </details>
